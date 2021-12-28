@@ -1,0 +1,40 @@
+
+CREATE TABLE student1(id SERIAL,last_name text, first_name text, birth_date date);
+INSERT INTO student1(last_name,first_name,birth_date)VALUES('Benichou','Marc','1998/11/02');
+INSERT INTO student1(last_name,first_name,birth_date)VALUES('Cohen','Yoan','2010/12/03');
+INSERT INTO student1(last_name,first_name,birth_date)VALUES('Benichou','Lea','1987/07/27');
+INSERT INTO student1(last_name,first_name, birth_date)VALUES('Dux','Amelia','1996/04/07');
+INSERT INTO student1(last_name,first_name birth_date)VALUES('Grez','David','2003/06/14');
+INSERT INTO student1(last_name,first_name,birth_date)VALUES('Simpson','Omer','1980/10/03');
+
+
+SELECT first_name, last_name FROM student1
+SELECT first_name , last_name FROM student1 WHERE id = 2
+SELECT first_name,last_name FROM student1 WHERE last_name = 'Benichou' AND first_name = 'Marc'
+SELECT first_name, last_name FROM student1 WHERE last_name = 'Benichou' OR first_name = 'Marc'
+SELECT first_Name FROM student1 WHERE first_name LIKE '%a%';
+SELECT first_name FROM student1 WHERE first_name LIKE 'A%';
+SELECT first_name FROM student1 WHERE first_name LIKE 'A%a';
+SELECT first_name FROM student1 WHERE first_name LIKE '%a_';
+SELECT first_Name FROM student1 WHERE  id = 1 or  id = 3;
+SELECT * from student1 WHERE birth_date >= '2000/01/1'
+
+
+SELECT first_name, last_name FROM student1 ORDER BY last_name ASC;
+
+SELECT first_name, last_name, birth_date FROM student1 ORDER by birth_date DESC NULLS LAST limit 1;
+SELECT first_name FROM student1 OffSET 2;
+
+
+UPDATE student1 SET birth_date = '1998/11/02' WHERE first_name = 'Lea';
+UPDATE student1 SET last_name = 'Guez' WHERE first_name = 'David';
+DELETE FROM student1 WHERE first_name = 'Lea' AND last_name = 'Benichou';
+SELECT count(id) FROM student1 WHERE birth_date > '2000/01/01';
+ALTER TABLE student1 ADD COLUMN math_grade smallint; 
+UPDATE student1 SET math_grade = 80 WHERE id = 1;
+UPDATE student1 SET math_grade = 90 WHERE id = 2 or id =3; 
+UPDATE student1 SET math_grade = 90 WHERE id = 5;
+UPDATE student1 SET math_grade = 40 WHERE ID = 6;
+SELECT count(id) FROM student1 WHERE math_grade > 83;
+INSERT INTO student1(last_name,first_name,birth_date, math_grade)VALUES('Simpson','Omer','1980/10/03', 70);
+SELECT first_name, last_name, count(math_grade)from student1 GROUP BY first_name,last_name;

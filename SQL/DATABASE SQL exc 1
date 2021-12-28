@@ -1,0 +1,14 @@
+CREATE TABLE items(name text,price smallint);
+INSERT INTO items(name,price)VALUES('SmallDesk' ,100);
+INSERT INTO items(name,price)VALUES('Large Desk' ,300);
+INSERT INTO items(name,price)VALUES('Fan' ,80);
+CREATE TABLE customers(name text,lastname text);
+INSERT INTO customers(name,last_name)VALUES('Greg','Jones');
+INSERT INTO customers(name,last_name)VALUES('Sandra','Jones');
+INSERT INTO customers(name,last_name)VALUES('Scott','Scott');
+INSERT INTO customers(name,last_name)VALUES('Trevor','Green');
+INSERT INTO customers(name,last_name)VALUES('Melanie','Johnson');
+SELECT * FROM items
+SELECT * FROM items WHERE price > 81
+SELECT * FROM items WHERE price <299
+SELECT * FROM customers WHERE name NOT LIKE 'Scott%';

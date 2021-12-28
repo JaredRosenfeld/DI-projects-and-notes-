@@ -1,0 +1,49 @@
+SCHEMA: public
+
+DROP SCHEMA public ;
+
+CREATE SCHEMA public
+    AUTHORIZATION postgres;
+
+COMMENT ON SCHEMA public
+    IS 'standard public schema';
+
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+GRANT ALL ON SCHEMA public TO postgres;
+
+SELECT * from customer;
+SELECT first_name, last_name FROM customer AS full_name;
+SELECT  DISTINCT create_date from customer;
+SELECT * from customer ORDER BY first_name DESC;
+SELECT film_id, title, description ,release_year, rental_rate FROM film ORDER BY rental_rate ASC;
+SELECT address, phone, district from address WHERE district = 'Texas';
+SELECT * from film WHERE film_id = 15 or film_id = 150;
+SELECT * from film where title like 'St%';
+SELECT * from film where rental_rate <= 10  ORDER BY rental_rate LIMIT 10;
+SELECT * from film where rental_rate <= 10  ORDER BY rental_rate LIMIT 20
+
+SELECT customer.customer_id, payment.amount, payment.payment_date
+FROM customer
+INNER JOIN payment
+ON customer.customer_id = payment.customer_id ORDER BY payment.customer_id ASC;
+
+SELECT inventory.film_id, film.title
+FROM film
+INNER JOIN inventory
+ON inventory.film_id = film.film_id;
+
+SELECT film.title FROM film, inventory WHERE NOT film.film_id = inventory.film_id;
+
+SELECT country.country, city.city
+FROM city
+INNER JOIN country
+ON city.country_id = country.country_id;
+
+SELECT customer.customer_id, customer.first_name, customer.last_name, payment.amount,payment.payment_date, payment.staff_id
+FROM customer
+INNER JOIN payment
+ON customer.customer_id = payment.customer_id
+ORDER BY payment.staff_id DESC;
+
+

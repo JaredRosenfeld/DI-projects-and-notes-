@@ -1,0 +1,31 @@
+SELECT avg(number_oscars) as oscars FROM actors
+SELECT count(first_name) as name_actor FROM actors
+SELECT count(*) FROM actors
+SELECT max(number_oscars) FROM actors;
+SELECT min(number_oscars) fROM actors;
+SELECT sum(number_oscars) as total FROM actors
+SELECT DISTINCT last_name FROM actors;
+INSERT INTO actors(first_name,last_name,age, number_oscars)
+VALUES('Matt', 'Ross', '03/01/1970', 0);
+SELECT * FROM actors 
+SELECT DISTINCT first_name FROM actors;
+SELECT DISTINCT first_name FROM actors ORDER BY first_name ASC;
+SELECT * FROM actors WHERE first_name in ('Matt','Lea','George');
+SELECT * FROM actors WHERE first_name not in ('Matt','Lea','Davis');
+SELECT * FROM actors WHERE age between '1961-01-01' and '1975-01-01';
+INSERT INTO actors(first_name,last_name,age,number_oscars)VALUES('George','Clooney','06/06/1961',1);
+SELECT first_name, last_name, sum(number_oscars) FROM actors GROUP BY first_name, last_name;
+SELECT first_name, last_name, sum(number_oscars) FROM actors GROUP BY first_name, last_name ORDER BY min(number_oscars);
+SELECT avg(number_oscars) FROM actors;
+SELECT DISTINCT first_name, last_name, number_oscars FROM actors;
+SELECT * from actors WHERE age > '1970-01-01';
+SELECT * FROM actors where first_name in ('Tom','Morgan','Will');
+UPDATE actors SET age = '1970-01-01' WHERE first_name = 'Matt' AND last_name = 'Damon' RETURNING actor_id,first_name,last_name,age;
+DELETE FROM actors WHERE actor_id = 4 RETURNING actor_id,first_name,last_name, number_oscars;
+ALTER TABLE actors RENAME COLUMN actor_id TO actors_id;
+UPDATE actors SET first_name = 'Maty' WHERE first_name = 'Matt' AND last_name ='Damon' RETURNING *;
+UPDATE actors SET number_oscars = 4 WHERE first_name = 'George' RETURNING *;
+DELETE from actors WHERE actors_id = 7 RETURNING *;
+SELECT * FROM actors;
+ALTER TABLE actors RENAME COLUMN age to birthdate;
+DELETE FROM actors WHERE first_name = 'Matt' AND last_name = 'Ross' RETURNING *;

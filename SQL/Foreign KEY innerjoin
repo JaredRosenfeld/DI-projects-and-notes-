@@ -1,0 +1,19 @@
+CREATE TABLE producers(
+producer_id SERIAL,
+movie_title VARCHAR (50) NOT NULL,
+producer_first_name TEXT,
+producer_last_name TEXT,
+movie_id1 INTEGER,
+PRIMARY KEY (producer_id),
+FOREIGN KEY (movie_id1) REFERENCES movies (movie_id));
+
+INSERT INTO producers (movie_title, producer_first_name, producer_last_name, movie_id1) VALUES
+    ( 'Good Will Hunting', 
+    'Lawerence', 'Bender',
+    (SELECT movie_id from movies WHERE movie_title = 'Good Will Hunting'));
+SELECT * FROM producers 
+
+SELECT movies.movie_title, producers.producer_first_name, producers.producer_last_name
+FROM movies 
+INNER JOIN producers
+ON movies.movie_id = producers.movie_id1;

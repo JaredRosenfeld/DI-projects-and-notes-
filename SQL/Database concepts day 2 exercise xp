@@ -1,0 +1,38 @@
+
+
+CREATE TABLE items(name text,price smallint);
+INSERT INTO items(name,price)VALUES('SmallDesk' ,100);
+INSERT INTO items(name,price)VALUES('Large Desk' ,300);
+INSERT INTO items(name,price)VALUES('Fan' ,80);
+CREATE TABLE customers(name text,lastname text);
+INSERT INTO customers(name,lastname)VALUES('Greg','Jones');
+INSERT INTO customers(name,lastname)VALUES('Sandra','Jones');
+INSERT INTO customers(name,lastname)VALUES('Scott','Scott');
+INSERT INTO customers(name,lastname)VALUES('Trevor','Green');
+INSERT INTO customers(name,lastname)VALUES('Melanie','Johnson');
+SELECT * from items ORDER BY price ASC;
+SELECT * FROM items WHERE price >= 80 ORDER BY price ASC;
+SELECT name from customers ORDER BY name ASC LIMIT 3;
+SELECT lastname from customers ORDER BY lastname DESC;
+
+ALTER TABLE items ADD COLUMN item_id SERIAL PRIMARY KEY;
+ALTER TABLE customers ADD COLUMN customer_id SERIAL PRIMARY KEY;
+CREATE TABLE purchases(customer_id smallint,item_id smallint, 
+					   FOREIGN KEY(customer_id) REFERENCES customers(customer_id),
+					   FOREIGN KEY(item_id) REFERENCES items(item_id));
+
+SELECT name FROM customers INNER JOIN purchases ON customers.customer_id = purchases.customer_id;
+SELECT name from items INNER JOIN purchases ON items.item_id = purchases.item_id;
+INSERT INTO purchases(customer_id,item_id)VALUES(1,1);
+INSERT INTO purchases(customer_id,item_id)VALUES(2,1);
+INSERT INTO purchases(customer_id,item_id)VALUES(1,2);
+INSERT INTO purchases(customer_id,item_id)VALUES(3,2);
+INSERT INTO purchases(customer_id,item_id)VALUES(2,2);
+
+SELECT purchases.*, name FROM customers INNER JOIN purchases ON customers.customer_id = purchases.customer_id;
+INSERT INTO purchases(customer_id,item_id)VALUES(4,1);
+SELECT name from items INNER JOIN purchases ON items.item_id = purchases.item_id WHERE customer_id = 4;
+SELECT * from customers,purchases INNER JOIN items ON items.item_id = purchases.item_id WHERE items.item_id = 1 or items.item_id = 2;
+INSERT into items(name,price)VALUES('HardDrive', 200);
+INSERT INTO purchases(customer_id,item_id)VALUES(3,4);
+SELECT customers.name, customers.lastname,items.name from customers,items INNER JOIN purchases ON items.item_id = purchases.item_id;
