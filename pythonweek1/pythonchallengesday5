@@ -1,0 +1,284 @@
+import math
+1
+
+list_example = ['a','b','c','d','e']
+
+for k ,v in enumerate(list_example):
+    list_example.insert(0,"1")
+    print(list_example)
+    break
+
+2
+
+string1 = "This is an example of a String"
+count = 0
+for elements in string1:
+    if elements == " ":
+        count += 1
+print(count)
+
+3
+count1 = 0
+count2 = 0
+for elements1 in string1:
+    if elements1.isupper():
+        count1 += 1
+    elif elements1.islower():
+        count2 += 1
+print(count1)
+print(count2)
+
+4
+my_sum = [1,5,4,2]
+def sum11():
+    sum1 = 0
+    for numbers in my_sum:
+        sum1 += numbers
+    print(sum1)
+    return sum1
+sum11()
+
+5
+find_max = [0,1,3,50]
+
+def find_max1():
+    max1 = max(find_max)
+    print(max1)
+    return max1
+
+find_max1()
+6
+
+def find_fractorial(number):
+    frac = 1
+    for n in range(1, number + 1):
+        frac = frac * n
+    print(frac)
+    return frac
+
+
+find_fractorial(4)
+
+7
+
+count3 = 0
+list_count = ['a','a','t','o',]
+
+for letter in list_count:
+    if letter == 'a':
+        count3 += 1
+print (count3)
+
+8
+
+
+
+def normL2(norm):
+    sum_of_norm = sum(norm)
+    sqd = sum_of_norm ** sum_of_norm
+    sqrt = math.sqrt(sqd)
+    print(sqrt)
+    return sqrt
+
+normL2([1,2,2])
+
+9
+
+
+def is_monotonic(list1):
+    if list1 == sorted(list1):
+        print("True")
+        return True
+    else:
+        test_list1 = list1[:]
+        print(test_list1)
+        list1.sort(reverse=True)
+        if list1 ==test_list1:
+            print("True")
+        else:
+            print("False")
+
+is_monotonic([11,10,3])
+
+10
+def longest_word(word):
+    word_list = word.split(" ")
+    sorted_words = sorted(word_list, key=len)
+    print(f"The longest word in the sentance is {sorted_words[-1]}")
+
+
+
+
+longest_word("Hi howisgoing are you today")
+
+11
+import re
+def int_or_string(list2):
+    list_of_string = []
+    list_of_int = []
+    for thing in list2:
+        if type(thing) == int:
+            list_of_int.append(thing)
+            continue
+        else:
+            list_of_string.append(thing)
+    print(list_of_int)
+    print(list_of_string)
+
+int_or_string([22222,"a", 55, "b"])
+
+
+12
+
+def is_palindrome(word1):
+    word_list = list(word1)
+    reversed_string = word_list[::-1]
+    if word_list == reversed_string:
+        print(f"{word1} is a palindrome")
+        return True
+    else:
+        print(f"{word1} is not a palindrome")
+is_palindrome("radar")
+13
+def length_of_string(sentence,k):
+    new_list = []
+    sentence_list = list(sentence.split(" "))
+    for words in sentence_list:
+           if len(words) > k:
+                new_list.append(words)
+    print(len(new_list))
+
+
+
+sentence = 'Do or do not there is no try'
+k = 2
+length_of_string(sentence,k)
+14
+def dict_avg(dict1):
+    sum01 = 0
+    for k, v in dict1.items():
+        sum01 += v
+        avg = sum01 // len(dict1)
+        avg = float(avg)
+    print(avg)
+
+
+dict_avg({'a': 1, 'b': 2, 'c': 8, 'd': 1})
+
+15
+def common_div(x,y):
+    list2 = []
+    for i in range(1, x + 1):
+        if x % i == 0:
+            list2.append(i)
+    list3 = []
+    for i in range(1, y + 1):
+        if y % i == 0:
+            list3.append(i)
+    list4 = list2 + list3
+    for number in list4:
+        if number > x or number // x == 0:
+            list4.remove(number)
+    list_final = []
+    for number1 in list4:
+        if number1 not in list_final:
+            list_final.append(number1)
+    print(list_final)
+
+common_div(1000,500000)
+
+16
+
+def prime(number):
+    check = False
+    if number > 1:
+        for i in range(2,number):
+            if (number % i) == 0:
+                check = True
+                print("False")
+                break
+            else:
+                print("True")
+                break
+
+prime(20)
+
+
+17
+
+def weird_print(list):
+    new_list = []
+    for k , v in enumerate(list):
+        if k % 2 == 0 and v % 2 == 0:
+            new_list.append(v)
+            print(new_list)
+
+
+weird_print([1,2,2,3,4,10,14])
+
+18
+
+
+def type_count(*arg, **kwargs):
+    dict_of_args = {}
+    list_arg = []
+    for t, args in kwargs.items():
+       arg_type = str(type(args))
+       list_arg.append(arg_type)
+       dict_of_args[arg_type] = list_arg.count(arg_type)
+
+
+
+
+    print(dict_of_args)
+
+
+type_count(a=1,b='string',c=3,d=True,e=False,)
+
+19
+
+def split1(splity1):
+    splity = list(splity1)
+    splity_final = ""
+    for item in splity:
+        if item == ' ':
+            item = ","
+            splity_final += item
+        else:
+            splity_final += item
+    print(splity_final)
+
+spl = "hi how are you today"
+split1(spl)
+
+20
+
+def pwdformat(pwd):
+    stars = "*" * len(pwd)
+    print(stars)
+
+
+pwdformat("dksngfhnasdjfln")
+
+21
+
+
+
+star = "*"
+stop = 6
+rows = 3  # Number of rows to print numbers
+count = 0
+for i in range(rows):
+    count += 1
+    if count == 1:
+        for j in range(1):
+            print("   ",star, end=' ')
+    elif count == 2:
+        for j in range(3):
+            print("",star, end=' ')
+
+    elif count == 3:
+        for j in range(5):
+            print(star, end=' ')
+    print("")
+    stop += 2

@@ -1,0 +1,26 @@
+from random import randint
+def throw_dice():
+    results = randint(1,6)
+    return results
+
+
+def throw_until_doubles():
+    total_throws = 1
+    while throw_dice() != throw_dice():
+        total_throws += 1
+    return total_throws
+
+
+def main():
+    count_of_doubles = []
+    for i in range(100):
+        count = throw_until_doubles()
+        count_of_doubles.append(count)
+    sum_of_count_of_doubles = sum(count_of_doubles)
+    print(f"It took a total number of {sum_of_count_of_doubles} spins to have 100 doubles")
+    avg_count_of_doubles = (sum_of_count_of_doubles) // len(count_of_doubles)
+    print(f"It was an average of {float(avg_count_of_doubles)} throws to get doubles")
+    return avg_count_of_doubles
+
+
+main()

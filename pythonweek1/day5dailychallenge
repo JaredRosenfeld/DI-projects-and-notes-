@@ -1,0 +1,6 @@
+user_input = input("Please input the words: ")
+
+sorted_input = [word for word in user_input.split(",")]
+
+final_sorted = sorted(sorted_input)
+print(final_sorted)

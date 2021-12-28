@@ -1,0 +1,125 @@
+game = [
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""]
+    ]
+
+
+def display_board():
+
+    print("TIC TAC TOE\n"
+          "*****************\n"
+          f"*    {game[0][0]}| {game[0][1]}  | {game[0][2]}   *\n"
+          "*  ___|___|___ *\n"
+          f"*   {game[1][0]}  |{game[1][1]}  | {game[1][2]}   *\n"
+          "*  ---|---|--- *\n"
+          f"*   {game[2][0]}  |{game[2][1]}   | {game[2][2]}  *\n"
+          "*****************")
+
+
+def player_input1():
+    count_indi_1 = 0
+    while True:
+            row_player1 = int(input("Player 1 please choose the row: "))
+            column_player1 = int(input("Player 1 please chose the column: "))
+            if "" == game[row_player1][column_player1]:
+                game[row_player1][column_player1] = "X"
+                print(game)
+                count_indi_1 += 1
+                if count_indi_1 == 1:
+                    break
+                return game
+            else:
+                print("You have chosen a place that is already taken, please try again")
+                continue
+
+def player_input2():
+      count_indi_1 = 0
+      while True:
+            row_player2 = int(input("Player 2 please choose the row: "))
+            column_player2 = int(input("Player 2 please chose the column: "))
+            if "" == game[row_player2][column_player2]:
+                game[row_player2][column_player2] = "O"
+                print(game)
+                count_indi_1 += 1
+                if count_indi_1 == 1:
+                    break
+                return game
+            else:
+                print("You have chosen a place that is already taken, please try again")
+                continue
+
+
+def check_win():
+            # 1
+            if (game[0][0] == game[1][0] == "X") and (game[1][0] == game[2][0] == "X"):
+                  print("X wins")
+                  return True
+            elif (game[0][0] == game[1][0] =="X") and (game[1][0] == game[2][0] == "O"):
+                  print("O wins")
+                  return game
+            # 2
+            elif (game[0][0] == game[0][1]== "X") and (game[0][1] == game[0][2] =="X"):
+                  print("X wins")
+                  return True
+            elif (game[0][0] == game[0][1] =="X") and (game[0][1] == game[0][2] == "O"):
+                  print("O wins")
+                  return True
+            # 3
+            elif (game[1][0] == game[1][1] == "X") and (game[1][1] == game[1][2] == "O"):
+                  print("O wins")
+                  return True
+            elif (game[1][0] == game[1][1]=="X") and (game[1][1] == game[1][2] == "X"):
+                  print("X wins")
+                  return True
+            # 4
+            elif (game[2][0] == game[2][1]=="X") and (game[2][1] == game[2][2] == "X"):
+                  print("X wins")
+                  return True
+            elif (game[2][0] == game[2][1] == "O") and (game[2][1] == game[2][2] == "O"):
+                  print("O wins")
+                  return True
+            # 5
+            elif (game[0][0] == game[1][1] =="X") and (game[1][1] == game[2][2] == "X"):
+                  print("X wins")
+                  return True
+            elif (game[0][0] == game[1][1]=="O") and (game[1][1] == game[2][2] == "O"):
+                  print("O wins")
+                  return True
+            # 6
+            elif (game[0][2] == game[1][1]=="X") and (game[1][1] == game[2][0] == "X"):
+                  print("X wins")
+                  return True
+            elif (game[0][2] == game[1][1]=="O") and (game[1][1] == game[2][0] == "O"):
+                  print("O wins")
+                  return True
+            # 7
+            elif (game[0][1] == game[1][1]=="X") and (game[1][1] == game[2][1] =="X"):
+                  print("X wins")
+                  return True
+            elif (game[0][1] == game[1][1] =="O") and (game[1][1] == game[2][1] =="O"):
+                  print("O wins")
+                  return True
+            # 8
+            elif (game[0][2] == game[1][2] == "X") and (game[1][2] == game[2][2] =="X"):
+                  print("X wins")
+                  return True
+            elif (game[0][2] == game[1][2]=="O") and (game[1][2] == game[2][2] =="O"):
+                  print("O wins")
+                  return True
+            else:
+                  return False
+
+
+def play():
+      print("Hello and welcome to Tic Tac Toe\n")
+      while True:
+            player_input1()
+            player_input2()
+            display_board()
+            if check_win() == True:
+                  print('game over')
+                  display_board()
+                  break
+
+play()

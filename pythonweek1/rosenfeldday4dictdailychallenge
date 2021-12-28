@@ -1,0 +1,48 @@
+import string
+
+matrix = [
+    ["7","i","3"],
+    ["t",'s','i'],
+    ["h","%","x"],
+    ["i","" ,"#"],
+    ["s","m",""],
+    ["$","a",""],
+    ["#","t","%"],
+    ["^","r","!"],
+
+]
+alphabet_string = string.ascii_lowercase
+alphabet_list = list(alphabet_string)
+space= " "
+msg_col1 = []
+msg_col2 = []
+msg_col3 = []
+count = 0
+for indi_list in matrix:
+    for item in indi_list[0]:
+        if item in alphabet_list:
+            msg_col1.append(item)
+        else:
+            count += 1
+            if count == 2:
+                msg_col1.append(space)
+for indi_list1 in matrix:
+    for item in indi_list1[1]:
+        if item in alphabet_list:
+            msg_col2.append(item)
+        else:
+            count += 1
+            if count == 2:
+                msg_col2.append(space)
+for indi_list2 in matrix:
+    for item in indi_list2[2]:
+        if item in alphabet_list:
+            msg_col3.append(item)
+        else:
+            count += 1
+            if count == 2:
+                msg_col3.append(space)
+final_list = msg_col1 + msg_col2 + msg_col3
+final_msg = "".join(final_list)
+
+print(final_msg)
