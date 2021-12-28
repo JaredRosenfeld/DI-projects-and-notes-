@@ -1,0 +1,70 @@
+def __abs__(number):
+    abstract_number = abs(number)
+    print(abstract_number)
+    return abstract_number
+
+__abs__(-100)
+
+def __int__(string):
+    number = int(string)
+    print(number)
+    return number
+
+__int__("5")
+
+def __input__(strings):
+    inputs = input(strings)
+    print(inputs)
+    return inputs
+
+__input__("Hi pick a number: ")
+
+def hello():
+    """Hi"""
+
+print(hello.__doc__)
+
+class Currency:
+    def __init__(self,currency,amount):
+        self.currency = currency
+        self.amount = amount
+    def __str__(self):
+        return f'{self.amount} {self.currency}s'
+    def __int__(self):
+        return self.amount
+    def __add__(self, other):
+        try:
+            if other != int:
+                return self.amount + other.amount
+            else:
+                Exception
+        except Exception:
+            return self.amount + other
+    def __repr__(self):
+        return f'{self.amount} {self.currency}s'
+c1 = Currency('dollar', 5)
+c2 = Currency('dollar', 10)
+c3 = Currency('shekel', 1)
+c4 = Currency('shekel', 10)
+
+print(c1.__str__())
+print(c1.__int__())
+print(c1.__repr__())
+print(c1.__add__(5))
+print(c1.__add__(c2))
+print(c1)
+c1.amount += 5
+print(c1)
+c1.amount += c2.amount
+print(c1)
+def conversion(currency1, currency2):
+   if currency1.currency == currency2.currency:
+            currency1.amount += currency2.amount
+            print(currency1)
+            return currency1
+   elif currency1.currency != currency2.currency:
+        raise Exception(f"TypeError: Cannot add between Currency type <dollar> and <shekel>")
+
+
+conversion(c3,c4)
+

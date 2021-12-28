@@ -1,0 +1,45 @@
+import re
+from random import random, sample,randint
+import string
+return_numbers = 'k5k3q2g5z6x9bn'
+result = re.findall('\d',return_numbers)
+
+string_results = "".join(result)
+print(string_results)
+
+
+user_input = input("Please enter your name: ")
+uc_word = "[A-Z][a-z]+"
+one_space = " "
+name_pat = uc_word + one_space + uc_word
+names = ["John Doe", "John", "John ", "John DOe", "john Doe"]
+
+if re.match(name_pat, user_input):
+ print("matched '{}'".format(user_input))
+else:
+    print("failed to match '{}'".format(user_input))
+
+while True:
+    password_input = int(input("Please enter the number of characters that you would like your random password to be between 6-30: "))
+    if password_input not in range(6,30):
+        print("Please enter a number in between 6-30")
+    else:
+        break
+
+
+def random_password():
+    count = 0
+    while True:
+        lower = string.ascii_lowercase
+        upper = string.ascii_uppercase
+        num = string.digits
+        symbols = string.punctuation
+        combined = lower + upper + num + symbols
+        length = randint(6, 30)
+        password = sample(combined, length)
+        final_password = "".join(password)
+        print(f"Your password is: {final_password}")
+        count += 1
+        if count == 100:
+            break
+random_password()

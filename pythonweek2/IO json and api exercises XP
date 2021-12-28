@@ -1,0 +1,61 @@
+import random
+from random import randint
+
+def get_words_from_file():
+    dict_words = {}
+    count = 0
+    with open('randomwords1.txt', 'r') as rando:
+        for word in rando:
+            key = count
+            dict_words[int(key)] = word
+            count += 1
+    return dict_words
+def get_random_sentence(length):
+    dict1 = get_words_from_file()
+    sentance = ""
+    for i in range(length):
+        k ,v = random.choice(list(dict1.items()))
+        v = str(v)
+        new_v = v.replace("\n"," ")
+        sentance += new_v
+    print(sentance.lower())
+    return sentance.lower()
+
+
+
+def main():
+    print("Hello and welcome to my random sentance gibabalator\n"
+          "Here we print random sentances")
+
+    user_input = input("Please enter a number between 2 and 20 for how long you want the legnth of the sentance to be: ")
+    try:
+        if 2 <= int(user_input) <= 20:
+            print("Here is your random sentance:")
+            get_random_sentence(int(user_input))
+            print("There you go. You happy now? You just got some random words. Be happy it took work to do.")
+        else:
+            Exception
+            print("Nope you didnt pick a number between 2 and 20 or you picked a letter, why dont you listen once in a while huh?")
+    except Exception as e:
+        print(e)
+
+
+import json
+sampleJson = """{ 
+   "company":{ 
+      "employee":{ 
+         "name":"emma",
+         "payable":{ 
+            "salary":7000,
+            "bonus":800
+         }
+      }
+   }
+}"""
+new_dict = json.loads(sampleJson)
+print(new_dict['company']['employee']['payable']['salary'])
+new_dict['company']['employee']['birthday'] = 'unknown'
+print(new_dict)
+
+with open("dict1.json", 'w+') as tg:
+    json.dump(new_dict,tg,indent = 2, sort_keys=True)

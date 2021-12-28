@@ -1,0 +1,35 @@
+import cmath
+class Circle:
+    def __init__(self, radius, diameter):
+        self.radius = radius
+        self.diameter = diameter
+    def circle_area(self):
+        area = cmath.pi * (self.radius * self.radius)
+        print(f"The circle area is {area}")
+        return area
+    def add_circle(self,*other):
+        new_radius = self.radius + other.radius
+        new_diameter = self.diameter + other.diameter
+        print(f"The radius of the new circle is {new_radius} and the new diameter is {new_diameter}")
+    def compare(self,other):
+        if self.circle_area() > other.circle_area():
+            print(f"My orginal circle is bigger")
+        elif self.circle_area() == other.circle_area():
+            print("Both circles are equal")
+        else:
+            print("The other circle is bigger")
+    def print_circle(self):
+        for i in range(0, self.radius):
+            for j in range(0, self.diameter):
+                if ((j == 0 or j == self.diameter - 1) and (i != 0 and i != self.radius - 1)):
+                    print('*', end='')
+                elif (((i == 0 or i == self.radius - 1) and (j > 0 and j < self.diameter - 1))):
+                    print('*', end='')
+                else:
+                    print(end=' ')
+            print()
+c1 = Circle(4,6)
+c2 = Circle(2,1)
+print(c2.compare(c1))
+list_of_circles = [c1,c2]
+print(c1.print_circle())

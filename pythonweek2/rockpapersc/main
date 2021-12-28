@@ -1,0 +1,34 @@
+from game import Game
+def get_user_menu_choice():
+    user_choice = input("Main menu: \n"
+                        "(g) Play a new game\n"
+                        "(x) Exit: ")
+    return user_choice
+
+def print_results(results):
+    print(f"The final results are {results}\n"
+          f"Thank you for playing!")
+def main():
+    wins = 0
+    losses = 0
+    draw = 0
+    while True:
+        results = {
+            "wins": wins,
+            "losses": losses,
+            "draw": draw}
+        menu = get_user_menu_choice()
+        if menu == "g":
+            game1 = Game.player(0)
+            if game1 == "Win":
+                wins += 1
+            elif game1 == "Losses":
+                losses += 1
+            elif game1 == "Draw":
+                draw += 1
+        elif menu == "x":
+            print(print_results(results))
+            break
+
+
+main()

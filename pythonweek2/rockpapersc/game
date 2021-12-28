@@ -1,0 +1,48 @@
+import random
+class Game:
+    def get_user_item(self):
+        while True:
+            user_input = input("Please enter an item(r/p/s): ")
+            if user_input == "r" or user_input == "p" or user_input == "s":
+                return user_input
+                break
+    def get_computer_item(self):
+        list_of_options = ["r","p","s"]
+        rando =  random.choice(list_of_options)
+        print(f"Computer has chosen {rando}")
+        return rando
+
+    def get_game_results(self,user_item,computer_item):
+        if user_item == computer_item:
+            return "Draw"
+        elif computer_item == "r" and user_item == "s":
+            return "Loss"
+        elif computer_item == 'r' and user_item == 'p':
+            return "Win"
+        elif computer_item == 'p' and user_item == 'r':
+            return "Loss"
+        elif computer_item == 'p' and user_item == 's':
+            return "Win"
+        elif computer_item == 's' and user_item == 'p':
+            return "Loss"
+        elif computer_item == 's' and user_item == 'r':
+            return "Win"
+    def player(self):
+        user_choice = Game.get_user_item(0)
+        computer_choice = Game.get_computer_item(0)
+        playing_game = Game.get_game_results(0,user_choice,computer_choice)
+        wins = 0
+        losses = 0
+        draw = 0
+        if playing_game == "Win":
+            print(f"You win, you picked {user_choice} and the computer chose {computer_choice}")
+            wins += 1
+        elif playing_game == "Draw":
+            print(f"You both draw, you both picked {user_choice}")
+            draw += 1
+        elif playing_game == "Loss":
+            print(f"You lossed you chose {user_choice} and the computer chose {computer_choice}")
+            losses += 1
+        return playing_game
+
+

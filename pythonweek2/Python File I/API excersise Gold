@@ -1,0 +1,43 @@
+import requests
+
+response = requests.get("https://api.giphy.com/v1/gifs/search?q=hilarious&offset=100&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My", params='hilarious')
+
+print(response.status_code)
+
+data = response.json()
+print(response.text)
+print(data)
+for keys, vars1 in data.items():
+    for vars in data['data']:
+        for key1, vars2 in vars.items():
+            for items in vars['original']:
+                print(items)
+
+print(data)
+for i in range(0,len(data['data'])):
+    for k,v in data['data'][i]['images']['original'].items():
+        if k == 'height':
+            if int(data['data'][i]['images']['original']['height']) > 100:
+                print(data['data'][i]['url'])
+                print(data['data'][i]['images']['original']['height'])
+            else:
+                print('not taller than 100')
+
+for i in range(0,11):
+    print(i)
+    print(data['data'][i]['url'])
+
+user_input = input("Please enter the subject of the gif: ")
+response1 = requests.get(f"https://api.giphy.com/v1/gifs/search?q={user_input}&offset=100&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My")
+data1 = response1.json()
+if data1['data'] == []:
+    print(f"I am sorry but there is none for that subject {user_input} here are a list of trending gifs however")
+    response2 = requests.get(
+        f"https://api.giphy.com/v1/gifs/search?q=trending&offset=100&rating=g&api_key=hpvZycW22qCjn5cRM1xtWB8NKq4dQ2My")
+    data2 = response2.json()
+    for i in range(0, len(data2['data'])):
+        print(data2['data'][i]['url'])
+
+else:
+    for i in range(0, len(data1['data'])):
+        print(data1['data'][i]['url'])

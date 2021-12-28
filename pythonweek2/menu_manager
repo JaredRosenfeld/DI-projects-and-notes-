@@ -1,0 +1,61 @@
+class MenuManager:
+    def __init__(self):
+        self.menu = [
+            {
+                "name" : "Soup",
+                "price": 10,
+                "spice_level" : "B",
+                "Gluten" : False
+            },
+            {
+                "name": "Hamburger",
+                "price": 15,
+                "spice_level": "A",
+                "Gluten": True
+            },
+            {
+                "name": "Salad",
+                "price": 18,
+                "spice_level": "A",
+                "Gluten": False
+            },
+            {
+                "name": "French Fries",
+                "price": 5,
+                "spice_level": "C",
+                "Gluten": False
+            },
+            {
+                "name": "Beef",
+                "price": 25,
+                "spice_level": "B",
+                "Gluten": True
+            }
+        ]
+    def add_item(self, name,price,spice,gluten):
+        self.menu.append({
+            "name": name,
+            "price": price,
+            "spice_level": spice,
+            "Gluten": gluten
+        })
+    def update_item(self,name,price,spice,gluten):
+        for dict1 in self.menu:
+            if dict1['name'] == name:
+                dict1['price'] = price
+                dict1["spice_level"] = spice
+                dict1['gluten'] = gluten
+            else:
+                print(f"Please notify the manager that the item {name} is not on the menu")
+    def remove_item(self, name):
+        for dict2 in self.menu:
+            if dict2["name"] == name:
+                self.menu.remove(dict2)
+            else:
+                print(f"Please notify the manager that the item {name} is not on the menu")
+
+menu1 = MenuManager()
+print(menu1.add_item("pizza","4","C",True))
+print(menu1.menu)
+print(menu1.remove_item("pizza"))
+print(menu1.menu)

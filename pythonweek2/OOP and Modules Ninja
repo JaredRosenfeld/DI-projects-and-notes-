@@ -1,0 +1,89 @@
+import random
+
+
+class Temperature:
+    pass
+class Celsius(Temperature):
+    def __init__(self):
+        pass
+    def convert_to_far(temp):
+        far = (temp * 9/5) + 32
+        print(f"The tempuratre is {temp}C or {far}F")
+        return far
+    def convert_to_kelvin(temp):
+        kel = temp + 273.15
+        print(f"The tempurate is {temp}C or {kel}K")
+        return kel
+class Fahrenheit(Temperature):
+    def __init__(self):
+        pass
+    def convert_to_celsius(temp):
+        cel = (temp - 32) * 5/9
+        print(f"The tempurature is {temp}F or {cel}C")
+        return cel
+    def convert_to_kelvin(temp):
+        kel = (temp - 32) * 5/9 + 273.15
+        print(f"The tempurature is {temp}F or {kel}K")
+class Kelvin(Temperature):
+    def __init__(self):
+        pass
+    def convert_to_celsius(temp):
+        cel = temp - 273.15
+        print(f"The current tempurature is {temp}K or {cel}C")
+        return cel
+    def convert_to_far(temp):
+        far = (temp - 273.15) * 9/5 + 32
+        print(f"The current temp is {temp}K or {far}F")
+        return far
+# kel1 = Kelvin
+# print(kel1.convert_to_far(50))
+# far1 = Fahrenheit
+# print(far1.convert_to_celsius(50))
+# print(far1.convert_to_kelvin(15))
+# cal1 = Celsius
+# print(cal1.convert_to_far(77))
+# print(cal1.convert_to_kelvin(50))
+
+from random import randint
+class QuantumParticle:
+    def __init__(self,position,momentum,spin):
+        self.position = position
+        self.momentum = momentum
+        self.spin = spin
+    def disturbance(fnc):
+        def inner_disturbance(*args):
+            fnc(*args)
+            print("Quantum Interferences")
+        return inner_disturbance
+    @disturbance
+    def position1(self):
+        self.position = randint(1,10000)
+        print(self.position)
+        return self.position
+    @disturbance
+    def momentum1(self):
+        self.momentum = float(random.uniform(0,1))
+        print(self.momentum)
+        return self.momentum
+    def spin1(self):
+        self.spin = random.choice([-0.5,0.5])
+        return self.spin
+    def __repr__(self):
+        return (self.position,self.momentum,self.spin)
+    def entangle(self,other):
+        spin_of_quantum = self.spin1()
+        spin_of_other = -spin_of_quantum
+        other.spin = spin_of_other
+        print(spin_of_quantum)
+        print(spin_of_other)
+        print("Spooky Action at a Distance !!")
+q1 = QuantumParticle(1,2,3)
+q2 = QuantumParticle(1,2,3)
+print(q1.momentum1())
+print(q1.momentum1())
+print(q1.position1())
+print(q1.spin1())
+print(q1.__repr__())
+print(q1.entangle(q2))
+
+

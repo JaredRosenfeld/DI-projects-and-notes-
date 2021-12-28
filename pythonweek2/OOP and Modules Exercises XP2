@@ -1,0 +1,70 @@
+from datetime import datetime
+
+print(datetime.now())
+
+NewYears = ' 1 Jan, 2022 00:00:00'
+NewYears_date = datetime.strptime(NewYears, "%d %b, %Y %H:%M:%S")
+
+
+time_until_new_years = NewYears_date-datetime.now()
+print(time_until_new_years)
+
+
+
+# birthdate = input("Please enter your Birthday DD MM, YYYY, 00:00:00: ")
+# birthday_date = datetime.strptime(birthdate, "%d %b, %Y %H:%M:%S")
+# print(birthday_date)
+# today = datetime.now()
+# duration = today - birthday_date
+# seconds = duration.total_seconds()
+# minutes = seconds // 60
+# print(minutes)
+today = datetime.now()
+def holiday(holiday_date):
+    days_until_holiday = holiday_date - today
+    print(days_until_holiday)
+
+Hannukah = '28 Nov, 2021 00:00:00'
+Hannukah_date = datetime.strptime(Hannukah, "%d %b, %Y %H:%M:%S")
+print(Hannukah_date)
+holiday(Hannukah_date)
+
+age_on_mercury = float(164 * 31557600)
+print(age_on_mercury)
+age = age_on_mercury // 365
+print(age)
+
+
+age_on_earth = (833990198 / 31557600)
+print(age_on_earth)
+
+def space_age(planet_name,planet_seconds):
+    user_age = int(input("Please enter your age: "))
+    user_age_seconds = user_age * 31557600
+    age_on_planet = (user_age_seconds // planet_seconds)
+    print(f"You are {age_on_planet} years old on {planet_name} but {user_age} on earth!")
+
+
+seconds_on_mercury = 31557600 * 0.2408467
+second_on_venus = 31557600 * 0.61519726
+second_on_mars = 31557600 * 1.8808158
+second_on_jupiter = 31557600 * 11.862615
+second_on_saturn = 31557600 * 29.447498
+second_on_uranus = 31557600  * 84.016846
+second_on_neptune = 31557600 * 164.79132
+#
+# space_age("Venus", second_on_venus)
+
+from faker import Faker
+fake = Faker()
+users = []
+for _ in range(10):
+  user_info = {
+      'name' : fake.name(),
+      'address' : fake.address(),
+      'language': fake.language_code().upper()
+
+  }
+  users.append(user_info)
+for lists in users:
+    print(lists)

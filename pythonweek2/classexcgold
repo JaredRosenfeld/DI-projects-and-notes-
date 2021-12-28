@@ -1,0 +1,144 @@
+class BankAccount:
+    def __init__(self, balance,username,password, authenticated = False):
+        self.balance = balance
+        self.username = username
+        self.password = password
+        self.authenticated = authenticated
+    def authenticate(self,username_insert , password_insert):
+        for account in bank_account_list:
+            if username_insert == account.username:
+                if password_insert == account.password:
+                    account.authenticated = True
+                    print("Logged in")
+                    return True
+                else:
+                    print("Error you entered the wrong password")
+                    return False
+            else:
+                print("Error wrong username")
+                return False
+
+    def deposit(self,amount):
+        for account in bank_account_list:
+            try:
+                if account.authenticated == True:
+                    try:
+                        if amount >= 0:
+                            account.balance += amount
+                            print(account.balance)
+                            break
+                        else:
+                            raise Exception
+                    except Exception:
+                        print("Error you can not deposit a negative amount")
+                else:
+                    raise Exception
+            except Exception:
+                print("You are not logged in you can not deposit")
+
+    def withdraw(self,withdraw_amount):
+        for account in bank_account_list:
+            try:
+                if account.authenticated == True:
+                    try:
+                        if withdraw_amount >= 0:
+                            account.balance -= withdraw_amount
+                            print(account.balance)
+                            break
+                        else:
+                            raise Exception
+                    except Exception:
+                        print("Error you can not withdraw a negative amount")
+                else:
+                    raise Exception
+            except Exception:
+                print("You are not logged in you can not deposit")
+
+
+# bank = BankAccount(100)
+# print(bank.deposit(50))
+# print(bank.withdraw(25))
+
+class MinimumBalanceAccount(BankAccount):
+    def __init__(self,balance, username,password,minimum_balance = 0):
+        super().__init__(balance,username,password)
+        self.minimum_balance = minimum_balance
+    def withdraw(self,withdraw_amount):
+        try:
+            if self.balance > self.minimum_balance:
+                    self.balance -= withdraw_amount
+                    print(f"${self.balance}")
+            else:
+                raise Exception
+        except Exception:
+            print(f"Error you can not withdraw we require a minimum balance of ${self.minimum_balance} and your current balance is ${self.balance}")
+
+# bank1 = MinimumBalanceAccount(244,100)
+# print(bank1.withdraw(10))
+bank2 = BankAccount(1000,"bob","123")
+bank3 = BankAccount(500,'joe','123')
+
+bank_account_list = [bank2,bank3]
+
+class ATM(MinimumBalanceAccount):
+    def __init__(self,account_list, try_limit = 0):
+        self.account_list = account_list
+        self.try_limit = try_limit
+        instance = isinstance(self.account_list,list)
+        print(instance)
+        try:
+            if self.try_limit > 0:
+                self.try_limit = 2
+                print(self.try_limit)
+            else:
+                raise Exception
+        except Exception:
+            print("Not a valid number")
+    def main_menu(self):
+        while True:
+            if self.log_in() == False:
+                break
+    def log_in(self):
+        player_input = input("Will you like to login?(y/n): ")
+        current_tries = 0
+        while True:
+            if player_input == "n":
+                print("Good bye")
+                return False
+            elif player_input == 'y':
+                player_input_username= input("Please enter your username: ")
+                player_input_password = input("Please enter your password: ")
+                for account in bank_account_list:
+                    if player_input_username == account.username:
+                        if player_input_password == account.password:
+                           if BankAccount.authenticate(self,account.username,account.password) == True:
+                               self.show_account_menu()
+                               break
+                    else:
+                       current_tries += 1
+                       if current_tries == 5:
+                            print("you have tried to log in too many times you are locked out")
+                            return False
+                else:
+                    print("That username is not an account with us")
+    def show_account_menu(self):
+        while True:
+            user_option = input("Would you like to deposit, withdraw, or exit: ")
+            if user_option == 'deposit':
+                amount = int(input("How much would you like to deposit: "))
+                for user1 in bank_account_list:
+                        user1.deposit(amount)
+                        break
+            elif user_option == 'withdraw':
+                amount_wd = int(input("How much would you like to withdraw: "))
+                for user2 in bank_account_list:
+                    user2.withdraw(amount_wd)
+                    break
+            elif user_option == 'exit':
+                print("Good-bye")
+                break
+                return False
+
+
+atm = ATM(bank_account_list,3)
+print(atm.main_menu())

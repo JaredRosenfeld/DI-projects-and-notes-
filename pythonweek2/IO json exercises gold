@@ -1,0 +1,42 @@
+import json
+with open("menu.json", 'r+') as m:
+    menu = json.load(m)
+class MenuManager:
+    def __init__(self):
+        print(menu)
+
+    def add_item(name,price):
+        item_dict = {
+            'name' : name,
+            'price' : price
+        }
+        for k , v in menu.items():
+            v.append(item_dict)
+        print(menu)
+    def remove_item(name):
+        count = 0
+        for k , v in menu.items():
+           for dicts in v:
+               count += 1
+               for k1 ,v1 in dicts.items():
+                   if v1 == name:
+                       v.remove(dicts)
+                   else:
+                       if count >= len(v):
+                        print(f"{name} is not on the menu")
+                        break
+
+        print(menu)
+
+    @staticmethod
+    def save_to_file():
+        with open('menu.json', 'w+') as me:
+            json.dump(menu,me,indent = 2, sort_keys=True)
+            print("task complete")
+
+
+
+menu1 = MenuManager
+print(menu1)
+print(menu1.add_item('pie', 14))
+print(menu1.remove_item('pie'))

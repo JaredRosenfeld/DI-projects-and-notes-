@@ -1,0 +1,35 @@
+class Phone:
+    def __init__(self, phone_number):
+        self.phone_number = phone_number
+        self.call_history = []
+        self.messages = []
+    def call(self,other_phone):
+        print(f"This number {self.phone_number} has placed a call to {other_phone}")
+        self.call_history.append(other_phone)
+    def show_call_history(self):
+        print(self.call_history)
+    def send_message(self,other_phone, content):
+        message_dict = {
+            "to" : other_phone,
+            "from": self.phone_number,
+            "content" : content
+        }
+        self.messages.append(message_dict)
+        print(message_dict)
+    def show_out_going_messages(self):
+        for msg in self.messages:
+            print(f"Here are the outgoing messages to {msg['to']} and it reads '{msg['content']}' ")
+    def show_incoming_messages(self):
+        for msg in self.messages:
+            print(f"Here is the incoming message from {msg['from']} and it reads {msg['content']}")
+    def show_messages_from(self):
+        for msg in self.messages:
+            print(f"Here is whom the message is from {msg['from']}")
+
+phone1 = Phone("0587831516")
+content1 = "Hi how are you today?"
+print(phone1.call('2016613676'))
+print(phone1.send_message(2016613676, content1))
+print(phone1.show_out_going_messages())
+print(phone1.show_incoming_messages())
+print(phone1.show_messages_from())

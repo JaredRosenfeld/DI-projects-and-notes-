@@ -1,0 +1,33 @@
+from  IOjsonandAPIexercisesGold import MenuManager
+def load_manager():
+    menu1 = MenuManager
+    print(menu1)
+
+def show_user_menu():
+    while True:
+        print("Menu\n"
+              "(a) Add an item\n"
+              "(d) Delete an item\n"
+              "(v) View the menu\n"
+              "(x) Exit")
+        user_input = input("Please enter your command: ")
+        if user_input == 'a':
+            food_input = input("Please enter the food you would like to add: ")
+            number_input = int(input("Please enter the price of the item: "))
+            MenuManager.add_item(food_input,number_input)
+        elif user_input == 'd':
+            delete_input = input("Please enter the item that you would like to have removed: ")
+            MenuManager.remove_item(delete_input)
+            if MenuManager.remove_item(delete_input) == False:
+                print(f"{delete_input} is not on the menu")
+        elif user_input == 'v':
+            menu1 = MenuManager
+            print(menu1.print_menu())
+        elif user_input == 'x':
+            print("Good bye")
+            MenuManager.save_to_file()
+            break
+        else:
+            print("You did not enter a valid response please try again")
+
+show_user_menu()

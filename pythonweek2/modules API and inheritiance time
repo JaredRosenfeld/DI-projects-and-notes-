@@ -1,0 +1,56 @@
+import requests
+from time import time
+
+t1 = time()
+rsp1 = requests.get("https://api.sites.google.com/")
+# print(rsp1.elapsed,"s")
+t2 = time()
+rsp1.close()
+print(t2-t1,"seconds")
+
+
+import requests
+from time import time
+import random
+# t1 = time()
+# rsp1 = requests.get("https://api.sites.google.com/")
+# # print(rsp1.elapsed,"s")
+# t2 = time()
+# rsp1.close()
+# print(t2-t1,"seconds")
+
+class Card:
+    @staticmethod
+    def get_card():
+        suits = ["Hearts","Diamonds","Clubs","Spades"]
+        suits_get = random.choice(suits)
+        value = ["A","2","3","4","5","6","7","8","9",'10',"J","Q","K"]
+        value_get = random.choice(value)
+        indi_card = [suits_get,value_get]
+        return indi_card
+
+class Deck(Card):
+    list_of_cards = []
+    @staticmethod
+    def shuffle():
+       while True:
+           card_list = [Card.get_card()]
+           if card_list not in Deck.list_of_cards:
+               Deck.list_of_cards.append(card_list)
+           elif len(Deck.list_of_cards) >= 52:
+               break
+    @staticmethod
+    def deal():
+        count = 0
+        for cards in Deck.list_of_cards:
+            count += 1
+            print(f"Here is your card {cards}")
+            Deck.list_of_cards.remove(cards)
+            if count == 1:
+                break
+        for card in Deck.list_of_cards:
+            print(card)
+
+d1 = Deck
+print(d1.shuffle())
+print(d1.deal())

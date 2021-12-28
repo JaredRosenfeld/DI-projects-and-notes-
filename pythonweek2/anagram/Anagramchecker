@@ -1,0 +1,34 @@
+import re
+
+
+class AnagramChecker:
+    anagrams1 = open('anagram.txt', 'r+')
+
+    def __init__(self):
+        self.anagrams1 = open('anagram.txt', 'r+')
+        print(self.anagrams1)
+
+    @staticmethod
+    def is_valid_word(word):
+        if re.match(r'\A[\w-]+\Z', word):
+            print(f"{word} is a valid English word")
+            return True
+
+    @staticmethod
+    def is_anagram(s1, s2):
+        s1 = sorted(s1.lower())
+        s2 = sorted(s2.lower())
+        if s1 == s2[1::]:
+            return True
+
+    def get_anagrams(word):
+        anagram_list = []
+        anagrams2 = open('anagram.txt', "r+")
+        valid_word_checker = AnagramChecker.is_valid_word(word)
+        if valid_word_checker:
+            for words in anagrams2:
+                isit = AnagramChecker.is_anagram(word,words)
+                if isit:
+                    anagram_list.append(words[:-1:].lower())
+        return anagram_list
+

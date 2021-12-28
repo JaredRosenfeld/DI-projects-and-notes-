@@ -1,0 +1,75 @@
+class Character:
+    def __init__(self,name,life=20, attack=10):
+        self.name = name
+        self.life = life
+        self.attack = attack
+    def basic_attack(self,opposing_player):
+        self.life -= self.attack
+        print(f"{opposing_player.name} has attacked {self.name}")
+        print(f"{self.name} has {self.life} points left")
+
+
+class Druid(Character):
+    def __init__(self,name,life,attack):
+        super().__init__(name,life,attack)
+    def meditate(self):
+        self.life += 10
+        self.attack -= 2
+        print(f"{self.name} is meditating their life has increased by 10 but their attack decreased by 2")
+    def animal_help(self):
+        self.attack += 5
+        print(f"{self.name} is using animal help. Their attack has increased by 5")
+    def fight(self,opposing_player):
+        life_to_subtract = (self.life * 0.75) + (self.attack * 0.75)
+        opposing_player.life -= life_to_subtract
+
+class Warrior(Character):
+    def __init__(self,name,life,attack):
+        super().__init__(name,life,attack)
+
+
+    def brawl(self, opposing_player):
+        life_to_subtract = (2 * self.attack)
+        opposing_player.life -= life_to_subtract
+        life_to_add = (0.5 * self.attack)
+        self.life += life_to_add
+        print(f"{self.name} is brawling with {opposing_player.name}. {opposing_player.name} now has {opposing_player.life} and {self.name} has {self.life}")
+    def train(self):
+        self.life += 2
+        self.attack += 2
+        print(f"{self.name} is training both his life and attack are up by two ")
+    def roar(self,opposing_player):
+        opposing_player.attack -= 3
+        print(f"{self.name} roars and {opposing_player.name} losses 3 attack")
+
+class Mage(Character):
+    def __init__(self,name,life,attack):
+        super().__init__(name,life,attack)
+    def curse(self, opposing_character):
+        opposing_character.attack -= 2
+        print(f"{self.name} curses {opposing_character.name} and lowers their attack by 2")
+    def summon(self):
+        self.attack += 3
+        print(f"{self.name} summons a demon and raises their attack by 3")
+    def cast_spell(self,opposite_character):
+        life_to_subract = self.attack / self.life
+        opposite_character.life -= life_to_subract
+        print(f"{self.name} casts a spell against {opposite_character.name} and {opposite_character.name} loses {life_to_subract} health points")
+
+Druid1 = Druid("Druidy",20,10)
+war1 = Warrior("Warry",20,10)
+mage1 = Mage("Maggi",20,10)
+
+print(mage1.cast_spell(Druid1))
+print(Druid1.life)
+print(mage1.curse(war1))
+
+
+
+
+
+
+
+
+
+

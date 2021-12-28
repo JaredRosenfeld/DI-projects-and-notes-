@@ -1,0 +1,71 @@
+from collections import Counter
+class Text:
+    def __init__(self,string):
+        self.string = string
+        self.string = str(self.string)
+
+    def find_word(self):
+        count = 0
+        with open('thestranger.txt', 'r+') as the_stranger:
+            for words in the_stranger.readlines():
+                if self.string in words:
+                    count += 1
+                else:
+                    pass
+            if count == 0:
+                print(f'There are no words with the letters: {self.string}')
+                return None
+            else:
+                print(f"There are {count} numbers of the string: {self.string}")
+    def common_word(self):
+        count = 0
+        with open('thestranger.txt', 'r+') as the_stranger:
+            counter = Counter(the_stranger.readlines())
+            print(counter.most_common(1))
+    def unique_word(self):
+        count = 0
+        word_list = []
+        with open('thestranger.txt', 'r+') as the_stranger:
+           words = set(the_stranger.readlines())
+           for indi_words in words:
+               if indi_words not in word_list:
+                   word_list.append(indi_words)
+        print(word_list)
+    def from_file(self,file):
+        with open(file, 'r+') as the_stranger:
+            print(the_stranger.readlines())
+text1 = Text("afsdasdf")
+# print(text1.find_word())
+# print(text1.common_word())
+# print(text1.unique_word())
+# print(text1.from_file('thestranger.txt'))
+
+import string
+import re
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+
+class TextModification(Text):
+    def __init__(self):
+        pass
+    def nopunc(self):
+        with open('thestranger.txt', 'r+') as the_stranger:
+
+            text = the_stranger.read()
+            no_specials_string = re.sub('[!#?,.:";]', '', text)
+            print(no_specials_string)
+    def no_stop_words(self):
+        with open('thestranger.txt', 'r+') as the_stranger:
+            text = the_stranger.read()
+            stop_words = set(stopwords.words('english'))
+            word_tokens = word_tokenize(text)
+            filtered_sentence = [w for w in word_tokens if not w in stop_words]
+            for w in word_tokens:
+                if w not in stop_words:
+                    filtered_sentence.append(w)
+            for words in filtered_sentence:
+                print(words)
+text2 = TextModification()
+print(text2.no_stop_words())

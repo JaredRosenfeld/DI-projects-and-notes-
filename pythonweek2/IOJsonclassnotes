@@ -1,0 +1,206 @@
+f = open('data1','a+')
+print(f.read())
+print(f.read(5))
+print(f.read(5)[0])
+print(f.readlines())
+count_of_dart = 0
+count_of_luke = 0
+count_of_lea = 0
+for word in f.readlines():
+    if "Darth" in word:
+        count_of_dart += 1
+    elif "Luke" in word:
+        count_of_luke += 1
+    elif 'Lea' in word:
+        count_of_lea += 1
+print(f"The number of darth is {count_of_dart}")
+print(f"The number of Lukes is {count_of_luke}")
+print(f"The number of Leas is {count_of_lea}")
+with open('data1',"a+") as f:
+    f.write('\n')
+    f.write('Jared')
+
+last_name = "Skywalker"
+first_name = 'Luke'
+
+with open('data1','r') as f:
+    content = f.read()
+    new_last_name = content.replace(first_name, ' '.join([first_name,last_name]))
+with open('data1','w') as f1:
+    f1.write(new_last_name)
+f.close()
+
+# import json
+
+my_family = {
+    'parents' : ['Beth', 'Jerry'],
+    'children' : ['Summer','Morty']
+}
+json_file1 = "my_file.json"
+with open(json_file1,'w') as file_obj:
+    json.dump(my_family,file_obj)
+
+json_my_family = json.dumps(my_family)
+print(json_my_family)
+
+with open(json_file1,'w') as file_obj:
+    json.dump(my_family,file_obj, indent = 2, sort_keys=True)
+
+with open(json_file1,'r') as file_obj:
+    my_family = json.load(file_obj)
+
+print(my_family)
+
+
+person1 = {
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "hobbies": ["running", "sky diving", "singing"],
+    "age": 35,
+    "children": [
+        {
+            "firstName": "Alice",
+            "age": 6
+        },
+        {
+            "firstName": "Bob",
+            "age": 8
+        }
+    ]
+}
+
+json_file= 'my_test_file.json'
+with open(json_file,'w') as file_obj1:
+    json.dump(person1,file_obj1,indent = 2, sort_keys=True)
+
+with open(json_file,'r') as file_obj1:
+    my_family1 = json.load(file_obj1)
+
+
+print(f"Jane's children include {my_family1['children'][0]['firstName']} who is age {my_family1['children'][0]['age']},\nand {my_family1['children'][1]['firstName']} who is age {my_family1['children'][1]['age']}")
+my_family1['children'][0]['favorite color'] = 'red'
+my_family1['children'][1]['favorite color'] = 'blue'
+with open(json_file,'w') as file_obj1:
+    json.dump(my_family1,file_obj1,indent = 2, sort_keys=True)
+import json
+
+import requests
+
+response = requests.get("http://api.open-notify.org/iss-now.json")
+
+print(response.status_code)
+print(response.text)
+print(response.json())
+dict1 = response.json()
+print(dict1)
+print(response.headers)
+
+response1 = requests.get("http://api.open-notify.org/astros.json")
+data1 = response1.json()
+print(data1)
+print(response1.request.url)
+print(response1.request.body)
+
+response2 = requests.get("https://api.chucknorris.io/jokes/random")
+print(response2.status_code)
+dict2 = response2.json()
+print(dict2['value'])
+print(response2.request.url)
+print(response2.request.body)
+print(response2.text)
+from translate import Translator
+my_file1 = open('hello.txt', 'r+')
+read_lines = my_file1.read()
+translator1 = Translator(to_lang="de")
+translation = translator1.translate(read_lines)
+with open('hello.txt', 'w') as ft:
+    ft.writelines(translation)
+print(translation)
+my_file1.close()
+
+import random
+
+random_number = random.randint(1,10)
+print(random_number)
+user_input = input("Please pick a number 1-10: ")
+while True:
+    user_input = input("Please pick a number 1-10: ")
+    if 0 < int(user_input) <= 11:
+        if int(user_input) == random_number:
+            print("You win!")
+            break
+    else:
+        print("You did not input a correct number")
+        break
+
+
+def generator_function(num):
+    for i in range(num):
+        yield i * 2
+
+g = generator_function(100)
+print(g)
+next(g)
+next(g)
+print(next(g))
+print(next(g))
+for item in generator_function(50):
+    print(item)
+#
+def make_list(num):
+    results = []
+    for i in range(num):
+        results.append(i*2)
+    return results
+
+
+from time import time
+
+def performance(fn):
+    def wrapper(*args, **kwargs):
+        t1 = time()
+        results = fn(*args, **kwargs)
+        t2 = time()
+        print(f'0{t2-t1} s')
+        return results
+    return wrapper()
+
+@performance
+def long_time():
+    print('1')
+    for i in range(1000000):
+        i * 5
+@performance
+def long_time2():
+    print('2')
+    for i in list(range(1000000)):
+        i * 5
+
+def special_for(iterable):
+    iterator = iter(iterable)
+    while True:
+        try:
+            print(iterator)
+            next(iterator)
+        except StopIteration:
+            break
+
+
+special_for([1,2,3])
+
+class MyGen():
+    current = 0
+    def __init__(self,first,last):
+        self.first = first
+        self.last = last
+    def __iter__(self):
+        return self
+    def __next__(self):
+        if MyGen.current < self.last:
+            num = MyGen.current
+            MyGen.current += 1
+            return num
+        raise StopIteration
+gen = MyGen(0,100)
+for i in gen:
+    print(i)

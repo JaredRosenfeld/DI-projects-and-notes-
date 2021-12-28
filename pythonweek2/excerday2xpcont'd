@@ -1,0 +1,26 @@
+from excerday2xp import Dogs
+
+class PetDog(Dogs):
+    def __init__(self,name,age,weight,trained = False):
+        Dogs.__init__(self,name,age,weight)
+        self.trained = trained
+
+    def train(self):
+        print("Bark")
+        self.trained = True
+    def play(self,*additional_dogs_names):
+        print(f"{additional_dogs_names} and {self.name} play with each other")
+    def do_a_trick(self):
+        if self.trained == True:
+            print(f"{self.name} does a barrel roll")
+            print(f"{self.name} stands on his back legs")
+            print(f"{self.name} shakes your hand")
+            print(f"{self.name} plays dead")
+
+dog1 = Dogs("Billy", 4, 40)
+dog2 = Dogs("Spot", 6, 25)
+dog3 = Dogs("Lucky", 7, 55)
+dog4 = PetDog("Joey", 4,100)
+print(dog4.train())
+print(dog4.do_a_trick())
+print(dog1.fight(dog3))

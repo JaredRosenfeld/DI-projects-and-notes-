@@ -1,0 +1,70 @@
+import random
+import json
+from random import randint
+class Character:
+    def __init__(self,name,age):
+        self.name = name
+        self.age = age
+    def dice_throw(self):
+        dice1 = random.randint(0, 6)
+        dice2 = random.randint(0, 6)
+        dice3 = random.randint(0, 6)
+        dice4 = random.randint(0, 6)
+        results = [dice1, dice2, dice3, dice4]
+        results = sorted(results)
+        results.remove(min(results))
+        added_results = sum(results)
+        return added_results
+    def show_character_stats_json(self):
+        char_stats = {
+            'name' : self.name,
+            'age' : self.age,
+            'strength' : Character.dice_throw(self),
+            'dexterity' : Character.dice_throw(self),
+            'constitition' : Character.dice_throw(self),
+            'intelligence' : Character.dice_throw(self),
+            'wisdom' : Character.dice_throw(self),
+            'charisma' : Character.dice_throw(self)
+        }
+        return char_stats
+    def show_character_stats_text(self):
+        char_stats = {
+            'name' : self.name,
+            'age' : self.age,
+            'strength' : Character.dice_throw(self),
+            'dexterity' : Character.dice_throw(self),
+            'constitition' : Character.dice_throw(self),
+            'intelligence' : Character.dice_throw(self),
+            'wisdom' : Character.dice_throw(self),
+            'charisma' : Character.dice_throw(self)
+        }
+        char_stats = str(char_stats)
+        return char_stats
+
+class Game(Character):
+    def __init__(self):
+        pass
+    @staticmethod
+    def add_to_text():
+        with open('character_stats.txt', 'w+') as c1:
+            for chars in list_of_chars:
+                c1.write(Character.show_character_stats_text(chars))
+                c1.write('\n')
+            c1.close()
+    @staticmethod
+    def add_to_json():
+        with open('character_stats.json', 'w+') as c2:
+            for chars in list_of_chars:
+                json.dump(Character.show_character_stats_json(chars), c2,sort_keys=True, indent=4)
+
+user_input = int(input("Please enter how many characters are playing today: "))
+list_of_chars = []
+for i in range(user_input):
+    name = input("Please enter the name of your character: ")
+    age = int(input("Please enter the age of your character: "))
+    list_of_chars.append(Character(name,age))
+    print(list_of_chars[i].show_character_stats_json())
+game1= Game
+game1.add_to_text()
+game1.add_to_json()
+

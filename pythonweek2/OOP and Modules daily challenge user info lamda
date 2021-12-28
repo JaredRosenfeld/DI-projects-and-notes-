@@ -1,0 +1,11 @@
+count = 0
+list_of_users = []
+while count <= 5:
+    count += 1
+    user_name = input("Please enter your name: ")
+    user_age = int(input("Please enter your age: "))
+    user_score = int(input("Please enter your score: "))
+    user_tuple = (user_name,user_age,user_score)
+    list_of_users.append(user_tuple)
+    list_of_users.sort(key=lambda x: x[1])
+print(list_of_users)

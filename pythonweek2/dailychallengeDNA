@@ -1,0 +1,60 @@
+import random
+class Chromosome:
+    def __init__(self):
+        pass
+    def get_genes(self):
+        count_of_genes = 0
+        list_of_genes = []
+        for i in range(0,10):
+            count_of_genes += 1
+            gene = random.randint(0,1)
+            list_of_genes.append(gene)
+            if count_of_genes == 10:
+                break
+        return list_of_genes
+
+class DNA(Chromosome):
+    def __init__(self):
+        super().__init__()
+        pass
+    def get_DNA(self):
+        count = 0
+        DNA = []
+        for chrom in range(0,10):
+            count += 1
+            chromo = Chromosome.get_genes(self)
+            DNA.append(chromo)
+            if count == 10:
+                break
+        return DNA
+
+class Organism(DNA):
+    def __init__(self,DNA_object):
+        super().__init__()
+        self.DNA_object = DNA_object
+        self.DNA_of_animal = []
+        pass
+    def get_organism(self):
+        self.DNA_of_animal.append(DNA.get_DNA(self))
+        return self.DNA_of_animal
+bird1 = Organism("bird")
+dog1 = Organism("Dog")
+cat1 = Organism("Cat")
+fish = Organism("Fish")
+list_of_animals = [bird1,dog1,cat1,fish]
+list_of_specific_genes = []
+for i in range(10):
+    list_of_specific_genes.append(1)
+def count_DNA(list_of_animals):
+    count = 0
+    while True:
+        for animals in list_of_animals:
+            for genes in animals.get_organism():
+                for indi_genes in genes:
+                    if indi_genes == list_of_specific_genes:
+                        print(f"The first animal to mutate was the {animals.DNA_object} it took {count} generations for it to mutate")
+                        return count
+                    else:
+                        count += 1
+
+count_DNA(list_of_animals)

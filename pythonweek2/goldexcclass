@@ -1,0 +1,39 @@
+import math
+import random
+from random import randint
+class Circle:
+    def __init__(self, radius = 5.0):
+        self.radius = radius
+
+    def perimeter(self):
+        peri = 2 * math.pi * self.radius
+        print(peri)
+    def area(self):
+        a = math.pi * (self.radius**2)
+        print(a)
+
+circle1 = Circle()
+print(circle1.area())
+print(circle1.perimeter())
+
+
+class MyList:
+    def __init__(self, list_of_letters):
+        self.list_of_letters = list_of_letters
+
+    def revlist(self):
+        reversed_list = self.list_of_letters[::-1]
+        print(reversed_list)
+    def sorted_list(self):
+        sorted_list = sorted(self.list_of_letters)
+        print(sorted_list)
+    def generate(self):
+        new_list = [random.randrange(1,1000) for l in range(len(self.list_of_letters))]
+        print(new_list)
+
+list1 = MyList(["a","t","w","d"])
+print(list1.revlist())
+print(list1.sorted_list())
+print(list1.generate())
+
+

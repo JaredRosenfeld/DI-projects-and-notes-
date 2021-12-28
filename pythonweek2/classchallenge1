@@ -1,0 +1,97 @@
+class Cats:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+
+cat1 = Cats("Bob",4)
+cat2 = Cats("Matilda", 6)
+cat3 = Cats("Joey", 11)
+
+cat_list = [cat1, cat2,cat3]
+def cat_age():
+    for cat in cat_list:
+        if cat1.age > cat2.age and cat1.age > cat3.age:
+            print(f"The oldest cat is {cat1.name} and is {cat1.age} years old")
+            return cat1.age
+        elif cat2.age > cat1.age and cat2.age > cat3.age:
+            print(f"The oldest cat is {cat2.name} and is {cat2.age} years old")
+            return cat2.age
+        elif cat3.age > cat1.age and cat3.age > cat2.age:
+            print(f"The oldest cat is {cat3.name} and is {cat3.age} years old")
+            return cat3.age
+
+cat_age()
+
+class Dog:
+    def __init__(self, name, height):
+        self.name = name
+        self.height = height
+        self.jump_height = height * 2
+
+    def bark(self):
+        print(f"{self.name} goes woof!")
+
+    def jump(self):
+
+        print(f"{self.name} jumps {self.jump_height} cm high")
+
+
+davids_dog = Dog("Rex", 50)
+sarahs_dog = Dog("Teacup",20)
+print(davids_dog.name)
+print(davids_dog.height)
+print(davids_dog.bark())
+print(davids_dog.jump())
+print(sarahs_dog.name)
+print(sarahs_dog.height)
+print(sarahs_dog.bark())
+print(sarahs_dog.jump())
+
+if davids_dog.height > sarahs_dog.height:
+    print(f"{davids_dog.name} is taller than {sarahs_dog.name}")
+else:
+    print(f"{sarahs_dog.name} is taller than {davids_dog.name}")
+
+class Song:
+    def __init__(self,lyrics):
+        self.lyrics = lyrics
+    def sing_me_a_song(self):
+        for words in self.lyrics:
+            print(words)
+
+
+stairway= Song(["There’s a lady who's sure","all that glitters is gold", "and she’s buying a stairway to heaven"])
+print(stairway.sing_me_a_song())
+
+from itertools import groupby
+
+class Zoo:
+    def __init__(self, zoo_name):
+        self.zoo_name = zoo_name
+        self.animals = ["Zebra","Ant", "Bird","Bee","Ape"]
+
+    def add_animal(self, new_animal):
+        if new_animal not in self.animals:
+            self.animals.append(new_animal)
+    def get_animals(self):
+        for ani in self.animals:
+            print(ani)
+    def sell_animals(self, animal_sold):
+        if animal_sold in self.animals:
+            self.animals.remove(animal_sold)
+    def sort_animals(self):
+        sorted_animals = sorted(self.animals)
+        alpha_sorted = {k: list(g) for k, g in groupby(sorted_animals, key=lambda x: x[0])}
+        return alpha_sorted
+    def get_groups(self):
+        for letter, animal in self.sort_animals().itesms():
+            print(letter,animal)
+
+
+
+
+
+bronx = Zoo("Bronx")
+print(bronx.add_animal("Giraffe"))
+print(bronx.get_groups())
