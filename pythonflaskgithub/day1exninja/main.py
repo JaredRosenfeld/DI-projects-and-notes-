@@ -15,7 +15,6 @@ def user_check():
         pwd = ''.join(possible_pwd)
     else:
         print('not okay')
-
     print(pwd)
 
 def password_gen():
