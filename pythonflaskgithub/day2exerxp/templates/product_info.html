@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product information</title>
+</head>
+<body>
+
+   {% for name, details in products.items() %}
+   <li>The {{name}} is {{details}} </li>
+    {% endfor%}
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<h1>Here are our products:</h1>
+ <ul class="products-list">
+        {% for product in data %}
+<li class="product">
+        {% for k , v in product.items()  %}
+            {% if k == 'Name'%}
+                {{v}}
+
+              <br><a href="/homepage/products/{{product['ProductId']}}"><button type="button">Click here for our products!</button></a>
+            {% endif %}
+         {% endfor %}
+</li>
+
+     {% endfor %}
+
+ </ul>
+</body>
+</html>
