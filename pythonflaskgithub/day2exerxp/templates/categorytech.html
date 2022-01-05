@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Techs</title>
+</head>
+<body>
+
+{% for item in tech %}
+{% for k,v in item.items() %}
+<li>The {{k}} is {{v}}</li>
+
+{% endfor%}
+<br>
+{% endfor %}
+
+</body>
+</html>

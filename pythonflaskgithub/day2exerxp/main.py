@@ -13,10 +13,35 @@ database_manager.create_database()
 
 app = flask.Flask(__name__)
 
+list1 = []
+
 
 @app.route("/homepage")
 def homepage():
     return render_template('homepage.html')
+
+@app.route("/homepage/category")
+def category():
+    list1 = []
+    data = database_manager.load_database()
+    for products in data:
+        for k, v in products.items():
+            if k == 'Category':
+              if v not in list1:
+                  list1.append(v)
+    template_file = open('templates/category.html', 'r').read()
+    return flask.render_template_string(template_file, product = products,data = data,list1 = list1)
+
+@app.route("/homepage/category/<tech>")
+def category_search(tech = None):
+    techs = []
+    data = database_manager.load_database()
+    for d in data:
+        if d['Category'] == tech:
+            techs.append(d)
+    template_file = open('templates/categorytech.html', 'r').read()
+    return flask.render_template_string(template_file,tech = techs)
+
 
 @app.route("/homepage/products")
 def products():
@@ -33,6 +58,8 @@ def product_info(product_id):
             ids = d
     template_file = open('templates/product_info.html', 'r').read()
     return flask.render_template_string(template_file, products = ids)
+
+
 
 
 if __name__ == "__main__":
