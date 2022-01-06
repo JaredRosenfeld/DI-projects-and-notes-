@@ -725,7 +725,7 @@ def create_database(dst_file='my_file1.json'):
       "WeightMeasure":45,
       "WeightUnit":"G",
       "Description":"Universal card reader",
-      "Name":"Universal card reader",
+      "Name":"Universalcardreader",
       "ProductPicUrl":"test-resources/sap/ui/demokit/explored/img/HT-1069.jpg",
       "Status":"Available",
       "Quantity":22,

@@ -59,6 +59,13 @@ def product_info(product_id):
     template_file = open('templates/product_info.html', 'r').read()
     return flask.render_template_string(template_file, products = ids)
 
+@app.route("/homepage/<name>/<int:quantity>")
+def quantity_search(name = None, quantity = None):
+    data = database_manager.load_database()
+    for d in data:
+        pass
+    template_file = open('templates/quantity.html','r').read()
+    return  flask.render_template_string(template_file, d = d,data = data, name = name, quantity = quantity)
 
 
 
