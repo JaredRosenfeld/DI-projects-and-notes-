@@ -2,6 +2,7 @@ import flask
 from flask import request
 from flask import render_template_string, render_template
 import database_manager
+from datetime import datetime
 
 database_manager.create_database()
 
@@ -15,10 +16,11 @@ app = flask.Flask(__name__)
 
 list1 = []
 
-
 @app.route("/homepage")
 def homepage():
-    return render_template('homepage.html')
+    hour = datetime.now()
+    now_hour = hour.hour
+    return render_template('homepage.html', now_hour = now_hour)
 
 @app.route("/homepage/category")
 def category():
