@@ -9,7 +9,7 @@ class Form(flask_wtf.FlaskForm):
     location = wtforms.StringField("Location", [wtforms.validators.DataRequired()])
     job = wtforms.StringField("Job", [wtforms.validators.DataRequired()])
     experience = wtforms.StringField("Experience", [wtforms.validators.DataRequired()])
-    language = wtforms.BooleanField("Language")
+    language = wtforms.StringField("Language")
     template = wtforms.StringField("Template")
     submit = wtforms.SubmitField("Submit")
 

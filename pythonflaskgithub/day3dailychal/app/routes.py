@@ -7,9 +7,10 @@ import json
 import bz2
 from werkzeug.utils import secure_filename
 from flask import flash, request, redirect, url_for
-from flask_wtf import file
+# from flask_wtf import file
 
 from app import app  # app.app is package_name.variable_name
+
 UPLOAD_FOLDER = 'images'
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
@@ -36,77 +37,77 @@ form_template = """
 {{form.experience.label}}
 {{form.experience(size=32)}}
 
-{{form.language.label)}}
+{{form.language.label}}
 {{form.language(size=32)}}
-
+{{ form.submit() }}
 
 </form>
 """
-# {{ form.submit() }}
+
 list_of_resumes = []
 
-@app.route("/resume",METHODS = ("GET","POST"))
+
+@app.route("/resume", methods=("GET", "POST"))
 def resume1():
-    templates = open('cvbase.html', 'r').read()
     from app.Forms import Form
     form = Form()
     if form.validate_on_submit():
         resume_dict = {
-            'FirstName' : form.first_name.data,
-            'LastName' : form.last_name.data,
-            'Age' : form.age.data,
-            'Location' : form.location.data,
-            'Job' : form.job.data,
-            'Experience' : form.experience.data,
-            'Language' : form.language.data
+            'FirstName': form.first_name.data,
+            'LastName': form.last_name.data,
+            'Age': form.age.data,
+            'Location': form.location.data,
+            'Job': form.job.data,
+            'Experience': form.experience.data,
+            'Language': form.language.data
         }
         list_of_resumes.append(resume_dict)
-    return flask.render_template_string(templates, form_template = form_template, form = form)
+        return flask.redirect('/resume/choice')
+    return flask.render_template_string(form_template, form=form)
 
-@app.route("/resume/red", METHODS = ("GET","POST"))
+
+@app.route("/resume/red", methods=("GET", "POST"))
 def redresume():
-    templates = open('redresume.html','r').read()
-    from app.Forms import Form
-    form = Form()
-    red_resume_dict = {
-        'FirstName': form.first_name.data,
-        'LastName': form.last_name.data,
-        'Age': form.age.data,
-        'Location': form.location.data,
-        'Job': form.job.data,
-        'Experience': form.experience.data,
-        'Language': form.language.data
-    }
-    return flask.render_template_string(templates,dict1 = red_resume_dict)
+    templates = open('app/templates/redresume.html', 'r').read()
+    first_name = list_of_resumes[0]['FirstName']
+    last_name = list_of_resumes[0]['LastName']
+    age = list_of_resumes[0]['Age']
+    location = list_of_resumes[0]['Location']
+    job = list_of_resumes[0]['Job']
+    experience = list_of_resumes[0]['Experience']
+    language = list_of_resumes[0]['Language']
+    return flask.render_template_string(templates, first_name=first_name,last_name=last_name,age = age,location=location,job=job,experience=experience,language=language)
 
-@app.route("/resume/blue", METHODS = ("GET","POST"))
+
+@app.route("/resume/blue", methods=("GET", "POST"))
 def blueresume():
-    templates = open('blueresume.html','r').read()
-    from app.Forms import Form
-    form = Form()
-    blue_resume_dict = {
-        'FirstName': form.first_name.data,
-        'LastName': form.last_name.data,
-        'Age': form.age.data,
-        'Location': form.location.data,
-        'Job': form.job.data,
-        'Experience': form.experience.data,
-        'Language': form.language.data
-    }
-    return flask.render_template_string(templates,dict1 = blue_resume_dict)
+    templates = open('app/templates/blueresume.html', 'r').read()
+    first_name = list_of_resumes[0]['FirstName']
+    last_name = list_of_resumes[0]['LastName']
+    age = list_of_resumes[0]['Age']
+    location = list_of_resumes[0]['Location']
+    job = list_of_resumes[0]['Job']
+    experience = list_of_resumes[0]['Experience']
+    language = list_of_resumes[0]['Language']
+    return flask.render_template_string(templates, first_name=first_name, last_name=last_name, age=age,
+                                        location=location, job=job, experience=experience, language=language)
 
-@app.route("/resume/black", METHODS = ("GET","POST"))
+
+@app.route("/resume/black", methods=("GET", "POST"))
 def blackresume():
-    templates = open('blackresume.html','r').read()
-    from app.Forms import Form
-    form = Form()
-    black_resume_dict = {
-        'FirstName': form.first_name.data,
-        'LastName': form.last_name.data,
-        'Age': form.age.data,
-        'Location': form.location.data,
-        'Job': form.job.data,
-        'Experience': form.experience.data,
-        'Language': form.language.data
-    }
-    return flask.render_template_string(templates,dict1 = black_resume_dict)
+    templates = open('app/templates/blackresume.html', 'r').read()
+    first_name = list_of_resumes[0]['FirstName']
+    last_name = list_of_resumes[0]['LastName']
+    age = list_of_resumes[0]['Age']
+    location = list_of_resumes[0]['Location']
+    job = list_of_resumes[0]['Job']
+    experience = list_of_resumes[0]['Experience']
+    language = list_of_resumes[0]['Language']
+    return flask.render_template_string(templates, first_name=first_name, last_name=last_name, age=age,
+                                        location=location, job=job, experience=experience, language=language)
+
+
+@app.route('/resume/choice',methods=("GET", "POST"))
+def choice():
+    templates = open('app/templates/cvbase.html', 'r').read()
+    return flask.render_template_string(templates)

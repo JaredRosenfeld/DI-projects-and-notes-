@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-     <link rel = 'stylesheet' type="text/css" href = "{{ url_for('static', filename='blackcss.css') }}"/>
+     <link rel = 'stylesheet' type="text/css" href = "{{ url_for('static', filename='blackss.css') }}"/>
 </head>
 <body>
+<h2>First name is: {{first_name}}</h2>
+<h2>Last name is: {{ last_name }}</h2>
+<h2>The person age is: {{ age }} years old</h2>
+<h2>The person live in: {{ location}} </h2>
+<h2>The person's current job is: {{ job }}</h2>
+<h2>The person has {{ experience}} years in that current position</h2>
+<h2>The person's first langauge is: {{language}}</h2>
 
-<h2>First name is {{dict1[FirstName]}}</h2>
-<h2>Last name is {{dict1[LastName]}}</h2>
-<h2>The person age is {{dict1[Age]}} years old</h2>
-<h2>The person live in {{dict1[Location]}} </h2>
-<h2>The person's current job is {{dict1[Job]}}</h2>
-<h2>The person has {{ dict1[Experience]}} years in that current position</h2>\
-<h2>The person's first langauge is {{dict1[Language]}}</h2>
 
 </body>
 </html>
