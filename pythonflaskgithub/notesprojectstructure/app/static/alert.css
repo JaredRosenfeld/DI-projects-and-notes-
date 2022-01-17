@@ -1,0 +1,18 @@
+.alert-error {
+  background-color: red;
+  color: white;
+}
+
+.alert-success {
+  background-color: green;
+  color: black;
+}
+
+.thing-color {
+    background-color:red;
+    color:blue;
+}
+.thing-machine {
+    background-color : black;
+    color: white;
+}

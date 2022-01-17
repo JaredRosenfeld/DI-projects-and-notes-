@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <link rel="stylesheet" href="static/alert.css">
+</head>
+<body>
+
+{% for category, message in get_flashed_messages(with_categories=True) %}
+  <div class="thing-{{category}}">Error: {{ message }}</div>
+{% endfor %}
+</body>
+</html>

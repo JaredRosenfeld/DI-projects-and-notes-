@@ -1,5 +1,3 @@
-from flask import flask, render_template
-
 from app import app
 app.config['SECRET_KEY'] = 'you-will-never-guess'
 
