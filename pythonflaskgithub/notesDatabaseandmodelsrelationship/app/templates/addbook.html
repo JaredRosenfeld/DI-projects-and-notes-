@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block my_block %}
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        {{ form.title.label }}
+        {{ form.title(size=32) }}
+        <br>
+        {{ form.author.label }}
+        {{ form.author(size=32) }}
+        <br>
+        {{ form.price.label }}
+        {{ form.price(size=32) }}
+        <br>
+        <button class="btn btn-primary">
+            {{ form.submit() }}
+        </button>
+
+    </form>
+
+{% endblock %}
