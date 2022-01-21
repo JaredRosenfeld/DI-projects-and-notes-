@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {% for n in news %}
+    <h1>NEW STORY</h1>
+    <h4> The title is: {{n.title}}</h4>
+    <h4>The description is: {{ n.description}} </h4>
+    <h4> The source is from {{ n.source}}</h4>
+
+    {% endfor %}
+</body>
+</html>
