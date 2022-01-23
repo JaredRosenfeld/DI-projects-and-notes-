@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST">
+{{ form1.hidden_tag() }}
+{{ form1.todo.label}}
+{{ form1.todo(size=32) }}
+<br>
+<button class="btn btn-primary">
+    {{ form1.submit1() }}
+</button>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+{% block content %}
+    <ul id="todolist" >
+        {% for todo in todos %}
+            <li id="todo_{{ todo.id }}" class="{% if todo.check %} checked {% endif %}">
+                {{ todo.todo }}
+                {% if not todo.check %}
+                    <button onclick="checkTodo('{{ todo.id }}')">Mark as done</button>
+                <meta http-equiv="refresh" content="5" >
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+<a href="{{ url_for('add_list') }}">Please click here to add more to your to do list</a>
+<script>
+
+    function checkTodo(id) {
+      var xhttp = new XMLHttpRequest();
+
+      xhttp.onreadystatechange = function() {};
+
+      xhttp.open("GET", "/check/" + id, true);
+      xhttp.send();
+      document.getElementById('todo_'+id).classList.add("checked");
+    }
+</script>
+
+{% endblock %}
